@@ -24,11 +24,11 @@
         <main>
             <div class="calculator wrapper">
                 <div class="screen">
-                    <div class="operationScreen">
+                    <div class="operationScreen" id="operationScreen">
                         50 * 50 =
                         <!-- current operation will be appended here -->
                     </div>
-                    <div class="resultScreen">
+                    <div class="resultScreen" id="resultScreen">
                         <!-- current entry/result will be appended here --> 
                         2500
                     </div>
@@ -38,26 +38,26 @@
                     <button class="calcBtn">+/-</button>
                     <button class="calcBtn">%</button>
                     <button class="calcBtn calcOperator">÷</button>
-                    <button class="calcBtn ">7</button>
-                    <button class="calcBtn">8</button>
-                    <button class="calcBtn">9</button>
+                    <button class="calcBtn numBtn">7</button>
+                    <button class="calcBtn numBtn">8</button>
+                    <button class="calcBtn numBtn">9</button>
                     <button class="calcBtn calcOperator">×</button>
-                    <button class="calcBtn">4</button>
-                    <button class="calcBtn">5</button>
-                    <button class="calcBtn">6</button>
+                    <button class="calcBtn numBtn">4</button>
+                    <button class="calcBtn numBtn">5</button>
+                    <button class="calcBtn numBtn">6</button>
                     <button class="calcBtn calcOperator">-</button>
-                    <button class="calcBtn">1</button>
-                    <button class="calcBtn">2</button>
-                    <button class="calcBtn">3</button>
+                    <button class="calcBtn numBtn">1</button>
+                    <button class="calcBtn numBtn">2</button>
+                    <button class="calcBtn numBtn">3</button>
                     <button class="calcBtn calcOperator">+</button>
-                    <button class="calcBtn zeroBtn">0</button>
+                    <button class="calcBtn zeroBtn" id="numBtn">0</button>
                     <button class="calcBtn">.</button>
-                    <button class="calcBtn calcOperator">=</button>
+                    <button class="calcBtn" id="calcCompute">=</button>
                 </div>
             </div>
         </main>
 
-        <footer> Copyright ©
+        <footer> Made By
             <a href="https://github.com/pinggyu">
                 Ping Yu
                 <i class="fab fa-github" aria-hidden="true"></i>
