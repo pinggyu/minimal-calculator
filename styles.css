@@ -97,14 +97,14 @@ button {
 /* SCREEN */
 
 .operationScreen {
-    min-height: 40px;
+    height: 50px;
     background-color: var(--clr-black-light-transparent);
     padding: 0.5rem 1rem 0 1rem;
     color: var(--bg-accent);
 }
 
 .resultScreen {
-    min-height: 60px;
+    height: 84px;
     background-color: var(--clr-black-light-transparent);
     padding: 0.7rem 1rem 1.5rem 1rem;
     font-size: clamp(1rem, 9vw, 2rem);

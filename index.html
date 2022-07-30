@@ -25,18 +25,17 @@
             <div class="calculator wrapper">
                 <div class="screen">
                     <div class="operationScreen" id="operationScreen">
-                        50 * 50 =
                         <!-- current operation will be appended here -->
                     </div>
                     <div class="resultScreen" id="resultScreen">
                         <!-- current entry/result will be appended here --> 
-                        2500
+                        
                     </div>
                 </div>
                 <div class="buttons">
-                    <button class="calcBtn">AC</button>
-                    <button class="calcBtn">+/-</button>
-                    <button class="calcBtn">%</button>
+                    <button class="calcBtn" id="clearBtn">AC</button>
+                    <button class="calcBtn calcModifier">+/-</button>
+                    <button class="calcBtn calcModifier">%</button>
                     <button class="calcBtn calcOperator">÷</button>
                     <button class="calcBtn numBtn">7</button>
                     <button class="calcBtn numBtn">8</button>
@@ -50,8 +49,8 @@
                     <button class="calcBtn numBtn">2</button>
                     <button class="calcBtn numBtn">3</button>
                     <button class="calcBtn calcOperator">+</button>
-                    <button class="calcBtn zeroBtn" id="numBtn">0</button>
-                    <button class="calcBtn">.</button>
+                    <button class="calcBtn numBtn zeroBtn">0</button>
+                    <button class="calcBtn calcModifier">.</button>
                     <button class="calcBtn" id="calcCompute">=</button>
                 </div>
             </div>

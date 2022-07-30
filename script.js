@@ -1,71 +1,77 @@
+// TO DO: chained operations
+// resutls screen: display current num typed by digit, result
+// operations screen: display first num after operator chosen + display operator + display second num after = is typed and display = 
+// limit num of digits displayed in operations screen
+// fix bug where second num is limited in terms of digits 
+
 // initialize namespace object
-const app = {
-    displayValue: '',
-    firstNum: 0,
-    secondNum: 0,
-    operationResult: 0,
-    currentOperator: '',
-    equalBtn: document.getElementById('calcCompute'),
-    resultDisplay: document.getElementById('resultScreen')
-}
+const app = {};
+
+const MAX_DIGITS_DISPLAYED = 20;
+
+app.displayValue = '';
+app.firstNum = 0;
+app.secondNum = 0;
+app.operationResult = 0;
+app.currentOperator = '';
+app.equalBtn = document.getElementById('calcCompute');
+app.resultDisplay = document.getElementById('resultScreen');
+app.operationDisplay = document.getElementById('operationScreen');
+app.clearBtn = document.getElementById('clearBtn');
 
 app.init = function() {
     app.getNums();
+    app.checkModifier();
     app.checkOperator();
     app.checkCompute();
+    app.checkClear();
 }
 
-app.reverseSign = function(num){
-    return -num;
+app.checkModifier = function() {
+    document.querySelectorAll('.calcModifier').forEach(btn => btn.addEventListener('click', function(e){
+        let numModifier = btn.textContent;
+        console.log(btn.textContent);
+        app.displayValue = app.modifier(numModifier,app.displayValue)
+        app.displayOperation();
+    }));    
 }
 
-app.percentage = function(num){
-    return num / 100;
-}
-
-app.add = function(num1, num2) {
-  return num1 + num2;
-};
-
-// app.sum = function(numsArray) {
-//     const sum = numsArray.reduce((partialSum, i) => partialSum + i, 0);
-//     return sum;
-// };
-
-app.subtract = function(num1, num2) {
-	return num1 - num2;
-};
-
-app.multiply = function(num1, num2) {
-  return num1 * num2;
-};
-
-app.divide = function(num1, num2) {
-    if (num2 === 0){
-        return 'Undefined'; 
-    } else {
-        return num1 / num2; 
+app.modifier = function(modifier, num){
+    console.log(modifier);
+    switch(modifier) {
+        case '+/-':
+            return -num;
+        case '%':
+            return num/100;
+        case '.':
+            return num + '.';
     }
-};
+}
 
 app.operate = function(operator, num1, num2){
     switch(operator) {         
         case '+':
-            return app.add(num1, num2);
+            return num1 + num2;
         case '-':
-            return app.subtract(num1, num2);
+            return num1 - num2;
         case '×':
-            return app.multiply(num1, num2);
+            return num1 * num2;
         case '÷':
-            return app.divide(num1, num2);
+        if (num2 === 0){
+            alert('Division by zero is undefined!'); 
+            break;
+        } else {
+            return num1 / num2; 
+        };
     }
 }
 
 app.checkCompute = function() {
     app.equalBtn.addEventListener('click', function(e){
-        app.secondNum = parseInt(app.displayValue);
-        app.firstNum = parseInt(app.firstNum);
+        app.secondNum = parseFloat(app.displayValue);
+        app.firstNum = parseFloat(app.firstNum);
         app.operationResult = app.operate(app.currentOperator, app.firstNum, app.secondNum);
+        app.displayOperation();
         app.displayResult();
     })
 }
@@ -78,24 +84,46 @@ app.checkOperator = function(){
     }));
 }
 
-app.getNums = function() {
+app.getNums = function() {    
     document.querySelectorAll('.numBtn').forEach(btn => btn.addEventListener('click', function(e){
         if (app.displayValue === app.firstNum){
             app.displayValue = '';
         }
-        app.displayValue += btn.textContent;
-        app.displayOperation();
-    }));
+        if (app.displayValue.length < MAX_DIGITS_DISPLAYED) {
+            app.displayValue += btn.textContent;
+            app.displayOperation();
+        } else {
+            alert('Max number of digits entered!');
+        }
+    })); 
 }
 
 app.displayOperation = function(){
     app.resultDisplay.textContent = '';
     app.resultDisplay.textContent = `${app.displayValue}`;
+    if (app.currentOperator && !app.secondNum) {
+         app.operationDisplay.textContent = `${app.firstNum} ${app.currentOperator}`
+    } else if (app.currentOperator && app.secondNum) {
+        app.operationDisplay.textContent = `${app.firstNum} ${app.currentOperator} ${app.secondNum}`
+    }
 }
 
 app.displayResult = function(){
     app.resultDisplay.textContent = '';
     app.resultDisplay.textContent = `${app.operationResult}`;
+}
+
+app.checkClear = function() {
+    app.clearBtn.addEventListener('click', function(e){
+        app.operationDisplay.textContent = '';
+        app.resultDisplay.textContent = '';
+        app.displayValue = '';
+        app.firstNum = 0;
+        app.secondNum = 0;
+        app.operationResult = 0;
+        app.currentOperator = '';
+
+    })
 }
 
 app.init();
