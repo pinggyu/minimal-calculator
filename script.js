@@ -1,5 +1,3 @@
-// make this work on mobile
-
 // initialize namespace object
 const app = {};
 
